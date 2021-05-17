@@ -2,7 +2,8 @@
 
 {% block content %}
 <p>Topic:{{ topic }}</p>
-
+<p>Entries:</p>
+<p><a href="{% url 'new_entry' topic.id %}">Add New Entry</a></p>
 <ul>
     {% for entry in entries %}
         <li>
