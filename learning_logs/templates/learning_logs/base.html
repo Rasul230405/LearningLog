@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <a href="{% url 'index' %}">Learnin Log</a>-
+        <a href="{% url 'index' %}">Learning Log</a>-
         <a href="{% url 'topics' %}">Topics</a>-
         {% if user.is_authenticated %}
             Hello, {{ user.username }}
+            <a href="{% url 'users:logout' %}">Log Out</a>
         {% else %}
             <a href="{% url 'users:login' %}">Login</a>  
         {% endif %}      
