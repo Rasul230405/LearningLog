@@ -1,6 +1,6 @@
 {% extends 'learning_logs/base.html' %}
 
-{% block content%}
+{% block content %}
   <form action="{% url 'new_entry' topic.id %}" method='POST'>
   {% csrf_token %}
   {{ form.as_p }}
