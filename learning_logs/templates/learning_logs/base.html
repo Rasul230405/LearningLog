@@ -1,8 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <a href="{% url 'index' %}">Learnin Log</a>
-        <a href="{% url 'topics' %}">Topics</a>
+        <a href="{% url 'index' %}">Learnin Log</a>-
+        <a href="{% url 'topics' %}">Topics</a>-
+        {% if user.is_authenticated %}
+            Hello, {{ user.username }}
+        {% else %}
+            <a href="{% url 'users:login' %}">Login</a>  
+        {% endif %}      
     </head>
     <body>
         {% block content %}{% endblock content %}
