@@ -36,10 +36,10 @@ def new_topic(request):
         if form.is_valid():
             new_topic = form.save(commit=False)
             new_topic.owner = request.user
-            if request.POST["public"]:
+            if "public" in request.POST:
                 new_topic.public = True
             form.save()
-            return HttpResponseRedirect(reverse('topics'))
+            return HttpResponseRedirect(reverse('topics'))  
 
     context = {'form': form}    
     return render(request,"learning_logs/new_topic.html",context)
