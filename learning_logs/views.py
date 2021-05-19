@@ -19,7 +19,7 @@ def topics(request):
 @login_required
 def topic(request, topic_id):
     """Entry page""" 
-    topic = get_object_or_404(topic, id=topic_id)
+    topic = get_object_or_404(Topic, id=topic_id)
     if topic.owner != request.user:
         raise Http404
     entries = topic.entry_set.order_by('-date_added')
