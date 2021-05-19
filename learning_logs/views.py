@@ -13,15 +13,15 @@ def index(request):
 @login_required
 def topics(request):
     """show all topics"""
-    topic= Topic.objects.filter(checked=true)
-    context = {'topics':topics}
+    topics = Topic.objects.filter(public=True).order_by("-date_added")
+    context = {'topics': topics}
     return render(request,"learning_logs/topics.html",context)
 
 @login_required
 def topic(request, topic_id):
     """Entry page""" 
     topic = get_object_or_404(Topic, id=topic_id)
-    if topic.owner != request.user:
+    if topic.public == False:
         raise Http404
     entries = topic.entry_set.order_by('-date_added')
     context = {'topic': topic, 'entries': entries}
@@ -36,6 +36,8 @@ def new_topic(request):
         if form.is_valid():
             new_topic = form.save(commit=False)
             new_topic.owner = request.user
+            if request.POST["public"]:
+                new_topic.public = True
             form.save()
             return HttpResponseRedirect(reverse('topics'))
 
@@ -54,7 +56,8 @@ def new_entry(request, topic_id):
         if form.is_valid():
             my_entry = form.save(commit=False)
             my_entry.topic = topic
-            if topic.owner == request.user:
+            my_entry.owner = request.user
+            if topic.public == True:
                 my_entry.save()
                 return HttpResponseRedirect(reverse('topic',args=[topic_id]))
             else:

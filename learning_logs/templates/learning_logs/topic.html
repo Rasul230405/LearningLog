@@ -12,11 +12,13 @@
       <div class="panel panel default">
           <div class="panel-heading" style="background-color: lightgrey;">
               <h3>
-                {{ entry.date_added|date:'M d, Y H:i'}}
+                {{ entry.date_added|date:'M d, Y H:i'}} {{ entry.owner }}
               </h3>
-              <small>
-                <a href="{% url 'edit_entry' entry.id %}" style="color:black">Edit entry</a>
-              </small>  
+              {% if topic.owner == request.user %}
+                <small>
+                  <a href="{% url 'edit_entry' entry.id %}" style="color:black">Edit entry</a>
+                </small>
+              {% endif %}    
           </div>  
 
           <div class="panel-body">

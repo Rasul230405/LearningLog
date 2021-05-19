@@ -10,7 +10,7 @@
 <form action="{% url 'new_topic' %}" method="POST" class="form">
     {% csrf_token %}
     {% bootstrap_form form %}
-
+    <label><input type="checkbox" name="public"/> Public</label>
     {% buttons %}
     <button name="Submit"  class="btn btn-primary">Add topic</button>
     {% endbuttons %}
