@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-#wgjgb_g)kv8s6po&)v*bfxm(k3&a5tx2dy567a0ox$e&)a9xs'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['localhost']
 
@@ -45,7 +45,6 @@ INSTALLED_APPS = [
 
     # 3rd party apps
     'bootstrap3',
-    'django_email_verification',
 ]
 
 MIDDLEWARE = [
@@ -141,18 +140,6 @@ BOOTSTRAP3 = {
     'include_jquery': True,
 }
 
- # Email Verification
-EMAIL_ACTIVE_FIELD = 'is_active'
-EMAIL_SERVER = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_ADDRESS = 'resulinci999@gmail.com'
-EMAIL_FROM_ADDRESS = 'resulicni999@gmail.com'
-EMAIL_PASSWORD = 'A3Tg238dca#'
-EMAIL_MAIL_SUBJECT = 'Confirm your email!'
-EMAIL_MAIL_HTML = 'mail_body.html'
-EMAIL_MAIL_PLAIM = 'mail_body.txt'
-EMAIL_PAGE_TEMPLATE = 'confirm_mail.html'
-EMAIL_PAGE_DOMAIN = 'http://learning-log-app-my-app.herokuapp.com/'
 
 # Heroku settings
 if os.getcwd() == '/app':
