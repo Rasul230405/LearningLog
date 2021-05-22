@@ -1,0 +1,8 @@
+{% autoescape off %}
+
+Hi, {{ user.username }}
+Please click following link to verfiy your account
+
+http://{{ domain }}{% url 'users:activate' uidb64=uid token=token %}
+
+{% endautoescape %}
