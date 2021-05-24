@@ -45,7 +45,6 @@ INSTALLED_APPS = [
 
     # 3rd party apps
     'bootstrap3',
-    'django_email_verification',
 ]
 
 MIDDLEWARE = [
@@ -162,12 +161,10 @@ if os.getcwd() == '/app':
         os.path.join(BASE_DIR, 'static'),
     )
 
-# For Django Email Backend
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-EMAIL_HOST = os.environ.get('EMAIL_HOST')
-EMAIL_PORT = os.environ.get('EMAIL_PORT')
-EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
-EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS')
-
+# Email verification
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'resulinci999@gmail.com'
+EMAIL_HOST_PASSWORD = 'A3Tg238dca#'
+EMAIL_PORT = 587
   
