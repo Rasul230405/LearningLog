@@ -52,7 +52,7 @@ def activate_account(request, uidb64, token):
         user.is_active = True
         user.save()   
         login(request, user)
-        return HttpResponseRedirect(reverse('users'))
+        return HttpResponseRedirect(reverse('index'))
     else:
         return HttpResponse('Token is invalid!')    
 
