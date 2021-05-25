@@ -12,7 +12,7 @@
       <div class="panel panel default">
           <div class="panel-heading" style="background-color: lightgrey;">
               <h3>
-                {{ entry.date_added|date:'M d, Y H:i'}} {{ entry.owner }}
+                <a href="{% url 'comment' topic_id=topic.id entry_id=entry.id %}">{{ entry.date_added|date:'M d, Y H:i'}} {{ entry.owner }}</a>
               </h3>
               {% if topic.owner == request.user %}
                 <small>

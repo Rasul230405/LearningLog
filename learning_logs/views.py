@@ -3,8 +3,8 @@ from django.http import HttpResponseRedirect, Http404
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 
-from .models import Topic,Entry
-from .forms import TopicForm, EntryForm
+from .models import Topic, Entry, Comment
+from .forms import TopicForm, EntryForm, CommentForm
 
 def index(request):
     """Home Page Of Learning Log"""
@@ -83,4 +83,13 @@ def edit_entry(request, entry_id):
             return HttpResponseRedirect(reverse('topic',args=[topic.id]))
 
     context = {'topic': topic, 'entry': entry, 'form': form}
-    return render(request,"learning_logs/edit_entry.html",context)                       
+    return render(request,"learning_logs/edit_entry.html",context)  
+
+@login_required
+def comment(request, topic_id, entry_id):
+    """Showing comments"""
+    entries = Entry.objects.order_by('-date_added')
+    entry = get_object_or_404(Entry, id=entry_id)
+    comments = entry.comment_set.order_by('-date_added')
+    context = {'entries': entries, 'comments': comments}
+    return render(request, "learning_logs/comments.html", context)           

@@ -28,3 +28,19 @@ class Entry(models.Model):
             return self.text[:50] + "..."
         else:
             return self.text
+
+class Comment(models.Model):
+    """Add comment to entries"""
+    comment = models.ForeignKey(Entry, on_delete=models.PROTECT)
+    text = models.TextField()
+    date_added = models.DateTimeField(auto_now_add=True)
+    owner = models.ForeignKey(User, on_delete=models.PROTECT)
+
+    class Meta:
+        verbose_name_plural = "comments"
+
+    def __str__(self):
+        if len(self.text) > 50:
+            return self.text[:50] + "..."
+        else:
+            return self.text

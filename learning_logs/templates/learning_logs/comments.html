@@ -1,0 +1,29 @@
+{% extends 'learning_logs/base.html' %}
+
+{% block content %}
+
+  {% for entry in entries %}
+    <div class="panel panel default">
+      <div class="panel-heading" style="background-color: lightgrey;">
+        <h3>
+          {{ entry.date_added|date:'M d, Y H:i'}} {{ entry.owner }}
+        </h3>
+        {% if topic.owner == request.user %}
+          <small>
+            <a href="{% url 'edit_entry' entry.id %}" style="color:black">Edit entry</a>
+          </small>
+        {% endif %}
+      </div>
+
+      <div class="panel-body">
+        {{ entry.text|linebreaks }}
+      </div>
+    </div>  
+
+  {% endfor %}                
+
+  {% for comment in comments %}
+    {{ comment }}
+  {% endfor %}  
+
+{% endblock content %}
