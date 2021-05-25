@@ -35,12 +35,12 @@ def register(request):
             to_email = form.cleaned_data.get("email")
             email = EmailMessage(email_subject, message, to=[to_email])
             email.send()
-            return HttpResponseRedirect(reverse('index'))
+            return render(request, "users/.html")
 
     else:
         form = NewUserForm()
     context = {'form': form} 
-    return render(request,"users/register.html", context)  
+    return render(request,"users/verification_message.html", context)  
 
 def activate_account(request, uidb64, token):
     try:
@@ -52,7 +52,7 @@ def activate_account(request, uidb64, token):
         user.is_active = True
         user.save()   
         login(request, user)
-        return HttpResponseRedirect(reverse('index'))
+        return HttpResponseRedirect(reverse('users'))
     else:
         return HttpResponse('Token is invalid!')    
 
