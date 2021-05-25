@@ -35,12 +35,12 @@ def register(request):
             to_email = form.cleaned_data.get("email")
             email = EmailMessage(email_subject, message, to=[to_email])
             email.send()
-            return render(request, "users/.html")
+            return render(request, "users/verification_message.html")
 
     else:
         form = NewUserForm()
     context = {'form': form} 
-    return render(request,"users/verification_message.html", context)  
+    return render(request,"users/register.html", context)  
 
 def activate_account(request, uidb64, token):
     try:
