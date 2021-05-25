@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-#wgjgb_g)kv8s6po&)v*bfxm(k3&a5tx2dy567a0ox$e&)a9xs
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['http://learning-log-app-my-app.herokuapp.com/']
+ALLOWED_HOSTS = ['localhost']
 
 
 # Application definition
@@ -167,6 +167,7 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'resulinci999@gmail.com'
 EMAIL_HOST_PASSWORD = 'A3Tg238dca#'
 EMAIL_PORT = 587
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 
   

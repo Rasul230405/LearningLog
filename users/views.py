@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.contrib.auth import logout,login,authenticate
+from django.contrib.auth import logout, login, authenticate
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from django.contrib.auth import login
@@ -50,9 +50,9 @@ def activate_account(request, uidb64, token):
         user = None
     if user is not None and account_activation_token.check_token(user, token):
         user.is_active = True
-        user.save()    
+        user.save()   
         login(request, user)
-        return HttpResponseRedirect(reverse('users:success'))
+        return HttpResponseRedirect(reverse('index'))
     else:
         return HttpResponse('Token is invalid!')    
 
